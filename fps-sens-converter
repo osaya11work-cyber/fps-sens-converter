@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>FPS感度換算ツール</title>
+  <style>
+    /* 背景アニメーション用 */
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: 
+        linear-gradient(to right, rgba(0,255,255,0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,255,255,0.2) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: moveGrid 10s linear infinite;
+      z-index: -1;
+    }
+    @keyframes moveGrid {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-40px, -40px); }
+    }
+  </style>
+  <script>
+    function convertSensitivity() {
+      const dpi = parseInt(document.getElementById("dpi").value);
+      const sens = parseFloat(document.getElementById("sens").value);
+      const game = document.getElementById("game").value;
+
+      let apex, valorant, ow2;
+
+      if (game === "apex") {
+        apex = sens;
+        valorant = sens * 0.318;
+        ow2 = sens * 3.333;
+      } else if (game === "valorant") {
+        apex = sens / 0.318;
+        valorant = sens;
+        ow2 = apex * 3.333;
+      } else if (game === "ow2") {
+        apex = sens / 3.333;
+        valorant = apex * 0.318;
+        ow2 = sens;
+      }
+
+      document.getElementById("result").innerHTML = `
+        <h2 class="text-xl font-bold text-cyan-400 mt-4 drop-shadow-lg">換算結果</h2>
+        <p class="text-purple-300">APEX: ${apex.toFixed(3)}</p>
+        <p class="text-green-300">VALORANT: ${valorant.toFixed(3)}</p>
+        <p class="text-pink-300">Overwatch 2: ${ow2.toFixed(3)}</p>
+      `;
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black flex justify-center items-center min-h-screen">
+  <!-- 背景グリッド -->
+  <div class="grid-bg"></div>
+
+  <!-- コンテンツカード -->
+  <div class="bg-gray-900 border border-cyan-400 rounded-2xl shadow-[0_0_25px_rgba(0,255,255,0.8)] p-6 w-96 relative z-10">
+    <h1 class="text-3xl font-bold mb-6 text-center text-cyan-400 drop-shadow-lg">
+      FPS感度換算ツール
+    </h1>
+    
+    <label class="block mb-2 font-semibold text-purple-300">DPI</label>
+    <input id="dpi" type="number" 
+      class="w-full p-2 border rounded bg-black text-white border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 transition duration-300 hover:shadow-[0_0_10px_rgba(200,100,255,0.7)]" 
+      placeholder="例: 800">
+
+    <label class="block mb-2 font-semibold text-purple-300">基準ゲーム</label>
+    <select id="game" 
+      class="w-full p-2 border rounded bg-black text-white border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 transition duration-300 hover:shadow-[0_0_10px_rgba(200,100,255,0.7)]">
+      <option value="apex">APEX</option>
+      <option value="valorant">VALORANT</option>
+      <option value="ow2">Overwatch 2</option>
+    </select>
+
+    <label class="block mb-2 font-semibold text-purple-300">基準感度</label>
+    <input id="sens" type="number" step="0.001" 
+      class="w-full p-2 border rounded bg-black text-white border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 transition duration-300 hover:shadow-[0_0_10px_rgba(200,100,255,0.7)]" 
+      placeholder="例: 2.5">
+
+    <button onclick="convertSensitivity()" 
+      class="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-2 rounded font-bold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(0,255,255,0.8)] hover:shadow-[0_0_25px_rgba(200,100,255,1)]">
+      換算する
+    </button>
+
+    <div id="result" class="mt-4 text-lg"></div>
+  </div>
+</body>
+</html>
