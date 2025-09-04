@@ -80,5 +80,20 @@
       class="w-full p-2 border rounded bg-black text-white border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 transition duration-300 hover:shadow-[0_0_10px_rgba(200,100,255,0.7)]">
       <option value="apex">APEX</option>
       <option value="valorant">VALORANT</option>
-      <option val
+      <option value="ow2">Overwatch 2</option>
+    </select>
 
+    <label class="block mb-2 font-semibold text-purple-300">基準感度</label>
+    <input id="sens" type="number" step="0.001" 
+      class="w-full p-2 border rounded bg-black text-white border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 transition duration-300 hover:shadow-[0_0_10px_rgba(200,100,255,0.7)]" 
+      placeholder="例: 2.5">
+
+    <button onclick="convertSensitivity()" 
+      class="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-2 rounded font-bold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(0,255,255,0.8)] hover:shadow-[0_0_25px_rgba(200,100,255,1)]">
+      換算する
+    </button>
+
+    <div id="result" class="mt-4 text-base sm:text-lg"></div>
+  </div>
+</body>
+</html>
