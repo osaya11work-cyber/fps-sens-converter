@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>FPS感度換算ツール</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* 背景アニメーション用 */
     body {
@@ -50,7 +51,7 @@
       }
 
       document.getElementById("result").innerHTML = `
-        <h2 class="text-xl font-bold text-cyan-400 mt-4 drop-shadow-lg">換算結果</h2>
+        <h2 class="text-lg sm:text-xl font-bold text-cyan-400 mt-4 drop-shadow-lg">換算結果</h2>
         <p class="text-purple-300">APEX: ${apex.toFixed(3)}</p>
         <p class="text-green-300">VALORANT: ${valorant.toFixed(3)}</p>
         <p class="text-pink-300">Overwatch 2: ${ow2.toFixed(3)}</p>
@@ -59,13 +60,13 @@
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black flex justify-center items-center min-h-screen">
+<body class="bg-black flex justify-center items-center min-h-screen px-4">
   <!-- 背景グリッド -->
   <div class="grid-bg"></div>
 
   <!-- コンテンツカード -->
-  <div class="bg-gray-900 border border-cyan-400 rounded-2xl shadow-[0_0_25px_rgba(0,255,255,0.8)] p-6 w-96 relative z-10">
-    <h1 class="text-3xl font-bold mb-6 text-center text-cyan-400 drop-shadow-lg">
+  <div class="bg-gray-900 border border-cyan-400 rounded-2xl shadow-[0_0_25px_rgba(0,255,255,0.8)] p-4 sm:p-6 w-full max-w-md relative z-10">
+    <h1 class="text-2xl sm:text-3xl font-bold mb-6 text-center text-cyan-400 drop-shadow-lg">
       FPS感度換算ツール
     </h1>
     
@@ -79,20 +80,5 @@
       class="w-full p-2 border rounded bg-black text-white border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 transition duration-300 hover:shadow-[0_0_10px_rgba(200,100,255,0.7)]">
       <option value="apex">APEX</option>
       <option value="valorant">VALORANT</option>
-      <option value="ow2">Overwatch 2</option>
-    </select>
+      <option val
 
-    <label class="block mb-2 font-semibold text-purple-300">基準感度</label>
-    <input id="sens" type="number" step="0.001" 
-      class="w-full p-2 border rounded bg-black text-white border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 transition duration-300 hover:shadow-[0_0_10px_rgba(200,100,255,0.7)]" 
-      placeholder="例: 2.5">
-
-    <button onclick="convertSensitivity()" 
-      class="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white py-2 rounded font-bold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(0,255,255,0.8)] hover:shadow-[0_0_25px_rgba(200,100,255,1)]">
-      換算する
-    </button>
-
-    <div id="result" class="mt-4 text-lg"></div>
-  </div>
-</body>
-</html>
